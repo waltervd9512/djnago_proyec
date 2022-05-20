@@ -7,13 +7,46 @@
 </head>
 <body>
     <h1>Base de Datos</h1>
-    <ul>
-        <li>Nombre</li>
-        <li>Apellido</li>
-        <li>Email</li>
-        <li>Dni</li>
-        <li>Fecha de nacimiento</li>
-    </ul>
+     <table >
+     <tr >
+         <th>ID</th>
+         <th>Nombre</th>
+         <th>Apellido</th>
+         <th>Email</th>
+         <th>Dni</th>
+         <th>Fecha de nacimiento</th>
+     </tr>
+     {% for persona in pesonas_bd %}
+     <tr>
+         <td>{{persona.id}}</td>
+         <td>{{persona.nombre}}</td>
+         <td>{{persona.apellido}}</td>
+         <td>{{persona.email}}</td>
+         <td>{{persona.dni}}</td>
+         <td>{{persona.fecha_nacimiento}}</td>
+
+     </tr>
+     {%endfor%}
+</table>
+
+<style >
+    th {
+        background-color: cyan;
+        padding: 5px ;
+
+    }
+
+    td {
+        color: black;
+        font-family: arial;
+        background-color: antiquewhite;
+        padding: 5px 20px  ;
+    }
+    table {
+        border: 2px solid;
+    }
+
+    </style>
 
 
 </body>

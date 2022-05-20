@@ -15,13 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from mvt_entregable.views import hello_world, segunda_vista, dia_de_hoy, mi_nombre_es,probandoplantilla
+from mvt_entregable.views import add_persona,base_datos
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hello_world/', hello_world),
-    path('segunda/',segunda_vista),
-    path('dia/',dia_de_hoy),
-    path('minombre/<nombre>',mi_nombre_es),
-    path('probando/',probandoplantilla),
+    path('add_persona/<str:nombre>/<str:apellido>/<str:email>/<int:dni>/<str:f_nacimiento>',add_persona),
+    path('base_datos/',base_datos),
 ]

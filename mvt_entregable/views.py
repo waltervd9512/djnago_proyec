@@ -1,35 +1,45 @@
 from datetime import  datetime
 
 from django.http import HttpResponse
-from django.template import Template, Context
+from django.template import Template
+from django.template import loader
+
+from app_coder.models import Persona
+
+def add_persona(self,nombre : str="None",apellido : str ="None",email :str ="None",dni : int="None",f_nacimiento : str ="None"):
+
+    template=loader.get_template("plantilla.html")
+
+    context={
+        'name': nombre,
+        'last_name': apellido,
+        'email': email,
+        'DNI': dni,
+        'fecha_nacimiento':f_nacimiento,
+    }
+
+    persona=Persona(
+        nombre=nombre,
+        apellido=apellido,
+        email=email,
+        dni=dni,
+        fecha_nacimiento=f_nacimiento,
+    )
+    persona.save()
+
+    documento=template.render(context)
+
+    return HttpResponse(documento)
+
+def base_datos(request):
+    pass
+    template = loader.get_template("visor_base_datos.html")
+    pesonas_bd=Persona.objects.all()
+    print(pesonas_bd)
+    context= {
+     'pesonas_bd': pesonas_bd,
+    }
 
 
-def hello_world(request):
-    return HttpResponse("hello world. Coder house ")
-
-def segunda_vista(request):
-    return HttpResponse(" Segunda Vista")
-
-def dia_de_hoy(request):
-
-    dia=datetime.now()
-
-    variable_texto=f"Hoy es dia : {dia}"
-
-    return HttpResponse(variable_texto)
-
-def mi_nombre_es(self,nombre):
-    variable_texto=f"Mi nombre es: {nombre}"
-    return HttpResponse(variable_texto)
-
-def probandoplantilla(self):
-    mihtml= open("C:/Users/walte/PycharmProjects/pythonProject1/mvt_entregable/mvt_entregable/plantillas/plantilla.html")
-
-    plantilla=Template(mihtml.read())
-    mihtml.close()
-
-    micontexto=Context()
-
-    documento=plantilla.render(micontexto)
-
+    documento = template.render(context)
     return HttpResponse(documento)

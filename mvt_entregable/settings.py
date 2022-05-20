@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'app_coder',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +55,10 @@ ROOT_URLCONF = 'mvt_entregable.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+                    'C:/Users/walte/PycharmProjects/pythonProject1/mvt_entregable/mvt_entregable/plantillas/',
+
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
